@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------------
 // FILE: src/App.js
 // --- UPDATED FILE ---
-// Refactored the BackToTopButton logic to fix the Netlify build error.
+// Fixed the scroll-to-top issue on page navigation.
 // ----------------------------------------------------------------------------------
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -19,10 +19,7 @@ import {
   Clock,
   XCircle,
   ArrowUp,
-  ChevronLeft,
-  ChevronRight,
   Search,
-  X,
   Menu,
   MessageCircle,
   Send,
@@ -78,6 +75,15 @@ const useMediaQuery = (query) => {
     return () => media.removeEventListener('change', listener);
   }, [query]);
   return matches;
+};
+
+// *** NEW: ScrollToTop component that will be used in the main App layout ***
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 };
 
 const StatusBadge = ({ status, className }) => {
@@ -251,13 +257,16 @@ const Footer = () => (
       <div>
         <h3 className='font-bold text-lg mb-3'>Follow Along</h3>
         <div className='flex justify-center md:justify-start gap-4'>
-          <a href='#' className='hover:text-pink-600'>
+          <a
+            href='viber://chat?number=%2B959793664676'
+            className='hover:text-pink-600'
+          >
             Viber
-          </a>{' '}
-          <a href='#' className='hover:text-pink-600'>
+          </a>
+          <a href='https://t.me/serioton24' className='hover:text-pink-600'>
             Telegram
-          </a>{' '}
-          <a href='#' className='hover:text-pink-600'>
+          </a>
+          <a href='https://instagram.com' className='hover:text-pink-600'>
             Instagram
           </a>
         </div>
@@ -274,14 +283,6 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
 
 const ErrorMessage = ({ message }) => (
   <div className='text-center py-10 my-4 text-red-600 bg-red-100 p-4 rounded-lg'>
@@ -989,6 +990,7 @@ const AllProductsPage = ({
           <p>Try adjusting your filters.</p>
         </div>
       )}
+      <BackToTopButton />
     </div>
   );
 };
@@ -1131,7 +1133,7 @@ const ProductDetailPage = ({
                 </h3>
                 <div className='flex flex-col sm:flex-row gap-4'>
                   <motion.a
-                    href='#'
+                    href='viber://chat?number=%2B959793664676'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='flex-1 text-center px-6 py-3 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
@@ -1141,7 +1143,7 @@ const ProductDetailPage = ({
                     <MessageCircle /> Order via Viber
                   </motion.a>
                   <motion.a
-                    href='#'
+                    href='https://t.me/serioton24'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='flex-1 text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
@@ -1169,7 +1171,7 @@ const ProductDetailPage = ({
           <div className='md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg p-4 border-t border-gray-200 shadow-lg-top z-50'>
             <div className='flex gap-4'>
               <motion.a
-                href='#'
+                href='viber://chat?number=%2B959793664676'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='flex-1 text-center py-3 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
@@ -1179,7 +1181,7 @@ const ProductDetailPage = ({
                 <MessageCircle size={18} /> Viber
               </motion.a>
               <motion.a
-                href='#'
+                href='https://t.me/serioton24'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='flex-1 text-center py-3 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
@@ -1443,7 +1445,7 @@ const ContactPage = () => (
     <div className='max-w-md mx-auto'>
       <div className='flex flex-col gap-6'>
         <motion.a
-          href='#'
+          href='viber://chat?number=%2B959793664676'
           target='_blank'
           rel='noopener noreferrer'
           className='flex-1 text-center p-6 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-4 text-xl'
@@ -1454,7 +1456,7 @@ const ContactPage = () => (
           <span>Chat on Viber</span>
         </motion.a>
         <motion.a
-          href='#'
+          href='https://t.me/serioton24'
           target='_blank'
           rel='noopener noreferrer'
           className='flex-1 text-center p-6 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-4 text-xl'
@@ -1644,6 +1646,7 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AppContent />
     </Router>
   );
