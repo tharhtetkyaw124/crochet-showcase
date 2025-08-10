@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------------
 // FILE: src/App.js
 // --- UPDATED FILE ---
-// Added a new FeaturedProduct component and section to the HomePage.
+// Refactored the BackToTopButton logic to fix the Netlify build error.
 // ----------------------------------------------------------------------------------
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -34,7 +34,7 @@ import {
   Star,
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import { useFirestore, useFeaturedProduct } from './firebase'; // Import the new hook
+import { useFirestore, useFeaturedProduct } from './firebase';
 
 // Import Swiper React components and styles
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -55,7 +55,7 @@ import {
   PinterestIcon,
 } from 'react-share';
 
-// --- Helper Functions & Utility Components (No Changes) ---
+// --- Helper Functions & Utility Components ---
 
 const isValidHttpUrl = (string) => {
   let url;
@@ -648,7 +648,6 @@ const HomePage = ({
         </div>
       </section>
 
-      {/* *** NEW: Featured Product Section *** */}
       {featuredError && <ErrorMessage message={featuredError} />}
       {!featuredLoading && featuredProduct && (
         <section className='py-16 bg-white'>
@@ -1218,6 +1217,7 @@ const BlogListPage = ({ blogPosts, loading, error }) => {
           ))}
         </div>
       )}
+      <BackToTopButton />
     </div>
   );
 };
@@ -1315,6 +1315,7 @@ const BlogDetailPage = ({ blogPosts, loading, error }) => {
           </div>
         </div>
       )}
+      <BackToTopButton />
     </div>
   );
 };
@@ -1556,90 +1557,87 @@ function AppContent() {
     location.pathname.startsWith('/blog/');
 
   return (
-    <>
-      <ScrollToTop />
-      <div className='flex flex-col min-h-screen bg-purple-50 font-sans'>
-        <Header />
-        <main className='flex-grow'>
-          <AnimatePresence mode='wait'>
-            <Routes>
-              <Route
-                path='/'
-                element={
-                  <HomePage
-                    categories={categories}
-                    products={allProducts}
-                    blogPosts={blogPosts}
-                    catLoading={catLoading}
-                    prodLoading={allProductsLoading}
-                    blogLoading={blogLoading}
-                    catError={catError}
-                    prodError={allProductsError}
-                    blogError={blogError}
-                  />
-                }
-              />
-              <Route
-                path='/products'
-                element={
-                  <AllProductsPage
-                    categories={categories}
-                    allProducts={allProducts}
-                    allProductsLoading={allProductsLoading}
-                    allProductsError={allProductsError}
-                  />
-                }
-              />
-              <Route
-                path='/products/:id'
-                element={
-                  <ProductDetailPage
-                    categories={categories}
-                    allProducts={allProducts}
-                    allProductsLoading={allProductsLoading}
-                    allProductsError={allProductsError}
-                  />
-                }
-              />
-              <Route
-                path='/categories'
-                element={
-                  <AllCategoriesPage
-                    categories={categories}
-                    loading={catLoading}
-                    error={catError}
-                  />
-                }
-              />
-              <Route
-                path='/blog'
-                element={
-                  <BlogListPage
-                    blogPosts={blogPosts}
-                    loading={blogLoading}
-                    error={blogError}
-                  />
-                }
-              />
-              <Route
-                path='/blog/:id'
-                element={
-                  <BlogDetailPage
-                    blogPosts={blogPosts}
-                    loading={blogLoading}
-                    error={blogError}
-                  />
-                }
-              />
-              <Route path='/about' element={<AboutPage />} />
-              <Route path='/contact' element={<ContactPage />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
+    <div className='flex flex-col min-h-screen bg-purple-50 font-sans'>
+      <Header />
+      <main className='flex-grow'>
+        <AnimatePresence mode='wait'>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <HomePage
+                  categories={categories}
+                  products={allProducts}
+                  blogPosts={blogPosts}
+                  catLoading={catLoading}
+                  prodLoading={allProductsLoading}
+                  blogLoading={blogLoading}
+                  catError={catError}
+                  prodError={allProductsError}
+                  blogError={blogError}
+                />
+              }
+            />
+            <Route
+              path='/products'
+              element={
+                <AllProductsPage
+                  categories={categories}
+                  allProducts={allProducts}
+                  allProductsLoading={allProductsLoading}
+                  allProductsError={allProductsError}
+                />
+              }
+            />
+            <Route
+              path='/products/:id'
+              element={
+                <ProductDetailPage
+                  categories={categories}
+                  allProducts={allProducts}
+                  allProductsLoading={allProductsLoading}
+                  allProductsError={allProductsError}
+                />
+              }
+            />
+            <Route
+              path='/categories'
+              element={
+                <AllCategoriesPage
+                  categories={categories}
+                  loading={catLoading}
+                  error={catError}
+                />
+              }
+            />
+            <Route
+              path='/blog'
+              element={
+                <BlogListPage
+                  blogPosts={blogPosts}
+                  loading={blogLoading}
+                  error={blogError}
+                />
+              }
+            />
+            <Route
+              path='/blog/:id'
+              element={
+                <BlogDetailPage
+                  blogPosts={blogPosts}
+                  loading={blogLoading}
+                  error={blogError}
+                />
+              }
+            />
+            <Route path='/about' element={<AboutPage />} />
+            <Route path='/contact' element={<ContactPage />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+      <Footer />
       {showBackToTop && <BackToTopButton />}
-    </>
+    </div>
   );
 }
 
