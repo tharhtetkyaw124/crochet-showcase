@@ -32,6 +32,8 @@ import {
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useFirestore, useFeaturedProduct } from './firebase';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 // Import Swiper React components and styles
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -339,11 +341,19 @@ const FeaturedProductSkeleton = () => (
 
 const ProductMediaViewer = ({ product }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const renderMedia = (url, type, altText) => {
+  const renderMedia = (url, type, altText, isZoomable = false) => {
     const displayUrl = isValidHttpUrl(url)
       ? url
       : 'https://placehold.co/800x800/D8B4FE/FFFFFF?text=Invalid+URL';
-    if (type === 'video')
+    const imageElement = (
+      <img
+        src={displayUrl}
+        alt={altText}
+        className='w-full h-full object-contain'
+      />
+    );
+
+    if (type === 'video') {
       return (
         <video
           src={displayUrl}
@@ -352,13 +362,13 @@ const ProductMediaViewer = ({ product }) => {
           aria-label={altText}
         />
       );
-    return (
-      <img
-        src={displayUrl}
-        alt={altText}
-        className='w-full h-full object-contain max-h-[300px] sm:max-h-[450px] md:max-h-[550px]'
-      />
-    );
+    }
+
+    if (isZoomable) {
+      return <Zoom>{imageElement}</Zoom>;
+    }
+
+    return imageElement;
   };
   const hasMedia = product.mediaUrls && product.mediaUrls.length > 0;
   const hasMultipleMedia = hasMedia && product.mediaUrls.length > 1;
@@ -389,13 +399,14 @@ const ProductMediaViewer = ({ product }) => {
               {renderMedia(
                 url,
                 product.mediaType,
-                `${product.title} - view ${index + 1}`
+                `${product.title} - view ${index + 1}`,
+                true
               )}
             </SwiperSlide>
           ))
         ) : (
           <SwiperSlide className='flex items-center justify-center'>
-            {renderMedia(null, 'image', 'No image available')}
+            {renderMedia(null, 'image', 'No image available', true)}
           </SwiperSlide>
         )}
       </Swiper>
