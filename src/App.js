@@ -182,7 +182,7 @@ const Header = () => {
           to='/'
           className='text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600'
         >
-          CrochetLove
+          Hmue's CraftHouse
         </Link>
         <nav className='hidden md:flex items-center gap-6'>
           {navLinks.map((link) => (
@@ -260,28 +260,37 @@ const Footer = () => (
         <h3 className='font-bold text-lg mb-3'>Follow Along</h3>
         <div className='flex justify-center md:justify-start gap-4'>
           <a
-            href='viber://chat?number=%2B959793664676'
+            href='viber://chat?number=%2B9594280523337'
             className='hover:text-pink-600'
           >
             Viber
           </a>
-          <a href='https://t.me/serioton24' className='hover:text-pink-600'>
-            Telegram
+          <a
+            href='https://www.tiktok.com/@hmues.craft'
+            className='hover:text-pink-600'
+          >
+            Tiktok
           </a>
-          <a href='https://instagram.com' className='hover:text-pink-600'>
-            Instagram
+          <a
+            href='https://m.me/238273769371301?source=qr_link_share'
+            className='hover:text-pink-600'
+          >
+            Messenger
           </a>
         </div>
       </div>
       <div>
-        <h3 className='font-bold text-lg mb-3'>CrochetLove</h3>
+        <h3 className='font-bold text-lg mb-3'>Hmue's CraftHouse</h3>
         <p>
           Handmade with love and yarn. Bringing cute and cozy creations to life.
         </p>
       </div>
     </div>
     <div className='text-center mt-10 border-t border-purple-200 pt-6'>
-      <p>&copy; {new Date().getFullYear()} CrochetLove. All Rights Reserved.</p>
+      <p>
+        &copy; {new Date().getFullYear()} Hmue's CraftHouse. All Rights
+        Reserved.
+      </p>
     </div>
   </footer>
 );
@@ -1357,7 +1366,7 @@ const AboutPage = () => (
           animate={{ opacity: 1, x: 0 }}
         >
           <h2 className='text-3xl font-bold text-purple-700 mb-4'>
-            Hi, I'm [Your Name]!
+            Hi, I'm Hmue!
           </h2>
           <p className='text-lg text-gray-600 leading-relaxed'>
             Welcome to my little corner of the internet! I started crocheting as
@@ -1391,7 +1400,7 @@ const AboutPage = () => (
               transition={{ duration: 0.5 }}
               className='w-5/12 bg-white p-4 rounded-lg shadow-md'
             >
-              <h3 className='font-bold text-purple-700'>2021 - First Stitch</h3>
+              <h3 className='font-bold text-purple-700'>2019 - First Stitch</h3>
               <p className='text-sm text-gray-600'>
                 Learned how to make a slip knot and my first chain.
               </p>
@@ -1406,7 +1415,7 @@ const AboutPage = () => (
               className='w-5/12 bg-white p-4 rounded-lg shadow-md text-right'
             >
               <h3 className='font-bold text-purple-700'>
-                2022 - First Amigurumi
+                2023 - First Amigurumi
               </h3>
               <p className='text-sm text-gray-600'>
                 Successfully created my first plushie: a wobbly but cute
@@ -1431,7 +1440,7 @@ const AboutPage = () => (
               className='w-5/12 bg-white p-4 rounded-lg shadow-md'
             >
               <h3 className='font-bold text-purple-700'>
-                2023 - Opening This Shop
+                2024 - Opening This Shop
               </h3>
               <p className='text-sm text-gray-600'>
                 Decided to share my creations with the world. Thanks for being
@@ -1450,13 +1459,23 @@ const ContactPage = () => (
       Get In Touch
     </h1>
     <p className='text-center text-lg text-gray-600 max-w-2xl mx-auto mb-12'>
-      Have a question, a custom request, or just want to say hi? I'd love to
-      hear from you! The best way to reach me is through Viber or Telegram.
+      Got questions or custom requests? 💌 Message me anytime on{' '}
+      <strong>Viber</strong>, <strong>TikTok</strong>, or{' '}
+      <strong>Messenger</strong>. Follow{' '}
+      <a
+        href='https://www.facebook.com/share/16wQE7ET8U/'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='text-purple-600 font-bold hover:underline'
+      >
+        @Hmue’s Craft House
+      </a>{' '}
+      on Facebook for updates & inspiration.
     </p>
     <div className='max-w-md mx-auto'>
       <div className='flex flex-col gap-6'>
         <motion.a
-          href='viber://chat?number=%2B959793664676'
+          href='viber://chat?number=%2B959428052227'
           target='_blank'
           rel='noopener noreferrer'
           className='flex-1 text-center p-6 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-4 text-xl'
@@ -1467,7 +1486,7 @@ const ContactPage = () => (
           <span>Chat on Viber</span>
         </motion.a>
         <motion.a
-          href='https://t.me/serioton24'
+          href='https://www.tiktok.com/@hmues.craft'
           target='_blank'
           rel='noopener noreferrer'
           className='flex-1 text-center p-6 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-4 text-xl'
@@ -1475,12 +1494,23 @@ const ContactPage = () => (
           whileTap={{ scale: 0.95 }}
         >
           <Send size={32} />
-          <span>Message on Telegram</span>
+          <span>Message on Tiktok</span>
+        </motion.a>
+        <motion.a
+          href='https://m.me/238273769371301?source=qr_link_share'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='flex-1 text-center p-6 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-4 text-xl'
+          whileHover={{ scale: 1.05, y: -5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <MessageCircle size={32} />
+          <span>Chat on Messenger</span>
         </motion.a>
       </div>
       <div className='mt-12 p-6 bg-white rounded-2xl shadow-md'>
         <h3 className='text-2xl font-bold text-purple-700 mb-4 text-center'>
-          Or Send a Message
+          This Feature is Coming Soon!
         </h3>
         <form>
           <div className='mb-4'>
@@ -1528,14 +1558,13 @@ const ContactPage = () => (
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Send Message
+            Contact me via Viber, Tiktok, or Messenger!
           </motion.button>
         </form>
       </div>
     </div>
   </div>
 );
-
 // --- MAIN APP COMPONENT ---
 
 function AppContent() {
