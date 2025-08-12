@@ -1169,7 +1169,7 @@ const ProductDetailPage = ({
                 </h3>
                 <div className='flex flex-col sm:flex-row gap-4'>
                   <motion.a
-                    href='viber://chat?number=%2B959793664676'
+                    href='viber://chat?number=%2B959428052227'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='flex-1 text-center px-6 py-3 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
@@ -1179,14 +1179,14 @@ const ProductDetailPage = ({
                     <MessageCircle /> Order via Viber
                   </motion.a>
                   <motion.a
-                    href='https://t.me/serioton24'
+                    href='https://m.me/238273769371301?source=qr_link_share'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='flex-1 text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-fuchsia-500 text-white font-bold rounded-full shadow-lg flex items-center justify-center gap-2'
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Send /> Order via Telegram
+                    <Send /> Order via Messenger
                   </motion.a>
                 </div>
               </div>
