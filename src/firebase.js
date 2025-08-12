@@ -1,7 +1,7 @@
 // FILE: src/firebase.js
 // --- UPDATED FILE ---
 // Added a new dedicated hook to fetch the featured product.
-
+//dd
 import { initializeApp } from 'firebase/app';
 import {
   getFirestore,

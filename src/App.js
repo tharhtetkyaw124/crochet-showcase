@@ -2,6 +2,7 @@
 // FILE: src/App.js
 // --- UPDATED FILE ---
 // Fixed the scroll-to-top issue on page navigation.
+//made tag improments
 // ----------------------------------------------------------------------------------
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -748,7 +749,8 @@ const HomePage = ({
           ) : (
             <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
               {categories.slice(0, 4).map((cat) => (
-                <Link to='/categories' key={cat.id}>
+                // <Link to='/categories' key={cat.id}>
+                <Link to={`/products?category=${cat.id}`} key={cat.id}>
                   <motion.div
                     className='p-6 text-center bg-pink-50 rounded-2xl shadow-md cursor-pointer h-full'
                     whileHover={{
@@ -812,11 +814,20 @@ const AllProductsPage = ({
   allProductsLoading,
   allProductsError,
 }) => {
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState(null);
   const [availabilityFilter, setAvailabilityFilter] = useState(null);
   const [tagFilter, setTagFilter] = useState([]);
   const [sortOrder, setSortOrder] = useState('newest');
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryId = params.get('category');
+    if (categoryId) {
+      setCategoryFilter(categoryId);
+    }
+  }, [location.search]);
 
   const handleClearFilters = () => {
     setSearchTerm('');
@@ -967,7 +978,11 @@ const AllProductsPage = ({
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-3 py-1.5 text-xs rounded-full font-semibold text-purple-800 bg-pink-200/60 shadow-sm hover:bg-pink-300/80 hover:text-purple-900 transition-colors`}
+                className={`px-3 py-1.5 text-xs rounded-full font-semibold transition-colors ${
+                  tagFilter.includes(tag)
+                    ? 'bg-pink-500 text-white'
+                    : 'bg-pink-200/60 text-purple-800 hover:bg-pink-300/80'
+                }`}
               >
                 {tag}
               </button>
@@ -1032,7 +1047,8 @@ const AllCategoriesPage = ({ categories, loading, error }) => {
       ) : (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
           {categories.map((cat) => (
-            <Link to='/products' key={cat.id}>
+            //<Link to='/products' key={cat.id}>
+            <Link to={`/products?category=${cat.id}`} key={cat.id}>
               <motion.div
                 className='p-8 bg-white rounded-3xl shadow-lg flex flex-col items-center text-center h-full'
                 whileHover={{
